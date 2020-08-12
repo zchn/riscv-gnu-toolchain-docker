@@ -32,7 +32,7 @@ RUN cd /riscv-gnu-toolchain/riscv-glibc/sunrpc/rpc/ && patch < type.h.patch
 WORKDIR /riscv-gnu-toolchain
 
 RUN ./configure --prefix=/opt/riscv
-RUN make
+RUN make linux
 
 FROM alpine
 
