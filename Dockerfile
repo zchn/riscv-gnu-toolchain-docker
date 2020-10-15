@@ -1,6 +1,6 @@
 FROM alpine as builder
 
-RUN apk --no-cache add --virtual riscv-build-dependencies \
+yyRUN apk --no-cache add --virtual riscv-build-dependencies \
     build-base \
     gawk \
     texinfo \
@@ -38,5 +38,12 @@ FROM alpine
 
 COPY --from=builder /opt/riscv/ /opt/riscv/
 
+RUN apk add --no-cache --virtual riscv-runtime-dependencies \
+    libintl
+
 ENV PATH $PATH:/opt/riscv/bin/
+ENV LD_INCLUDE_PATH /opt/riscv/riscv32-unknown-elf/include/
+ENV LD_LIBRARY_PATH /opt/riscv/lib/
+ENV CC /opt/riscv/bin/riscv32-unknown-elf-gcc
+ENV CXX /opt/riscv/bin/riscv32-unknown-elf-g++
 
