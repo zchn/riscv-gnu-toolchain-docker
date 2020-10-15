@@ -1,6 +1,6 @@
 FROM alpine as builder
 
-yyRUN apk --no-cache add --virtual riscv-build-dependencies \
+RUN apk --no-cache add --virtual riscv-build-dependencies \
     build-base \
     gawk \
     texinfo \
