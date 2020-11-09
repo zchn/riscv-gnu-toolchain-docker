@@ -39,7 +39,8 @@ FROM alpine
 COPY --from=builder /opt/riscv/ /opt/riscv/
 
 RUN apk add --no-cache --virtual riscv-runtime-dependencies \
-    libintl
+    libintl \
+    mpc1
 
 ENV PATH $PATH:/opt/riscv/bin/
 ENV C_INCLUDE_PATH /opt/riscv/riscv32-unknown-elf/include/
