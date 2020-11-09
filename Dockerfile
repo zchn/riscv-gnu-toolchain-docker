@@ -40,7 +40,9 @@ COPY --from=builder /opt/riscv/ /opt/riscv/
 
 RUN apk add --no-cache --virtual riscv-runtime-dependencies \
     libintl \
-    mpc1
+    mpc1 \
+    gmp \
+    mpfr4
 
 ENV PATH $PATH:/opt/riscv/bin/
 ENV LD_INCLUDE_PATH /opt/riscv/riscv32-unknown-elf/include/
