@@ -44,9 +44,9 @@ RUN apk add --no-cache --virtual riscv-runtime-dependencies \
     gmp \
     mpfr4
 
-ENV PATH $PATH:/opt/riscv/bin/
-ENV C_INCLUDE_PATH /opt/riscv/riscv32-unknown-elf/include/
-ENV LD_LIBRARY_PATH /opt/riscv/riscv32-unknown-elf/lib/
-ENV CC /opt/riscv/bin/riscv32-unknown-elf-gcc
-ENV CXX /opt/riscv/bin/riscv32-unknown-elf-g++
+ENV PATH=$PATH:/opt/riscv/bin/ \
+    C_INCLUDE_PATH=/opt/riscv/riscv64-unknown-elf/include/ \
+    LD_LIBRARY_PATH=/opt/riscv/riscv64-unknown-elf/lib/ \
+    CC=/opt/riscv/bin/riscv64-unknown-elf-gcc \
+    CXX=/opt/riscv/bin/riscv64-unknown-elf-g++ \
 
