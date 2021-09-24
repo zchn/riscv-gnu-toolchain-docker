@@ -26,9 +26,11 @@ WORKDIR /
 
 # RUN git clone --depth 1 --shallow-submodules --recursive https://github.com/riscv/riscv-gnu-toolchain
 # See https://github.com/riscv-collab/riscv-gnu-toolchain/issues/652#issuecomment-748411101 for why we are doing this to reduce size.
-RUN git clone https://github.com/riscv/riscv-gnu-toolchain.git && \
-    cd riscv-gnu-toolchain && \
-    git submodule update --init qemu && \
+RUN git clone https://github.com/riscv/riscv-gnu-toolchain.git
+
+WORKDIR /riscv-gnu-toolchain
+
+RUN git submodule update --init qemu && \
     git submodule update --depth=1 --init
 
 # ADD https://sourceware.org/bugzilla/attachment.cgi?id=10151&action=diff&collapsed=&headers=1&format=raw /riscv-gnu-toolchain/riscv-glibc/sunrpc/rpc/type.h.patch
