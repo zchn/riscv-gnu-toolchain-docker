@@ -20,5 +20,6 @@ jobs:
 workflows:
   commit:
     jobs:
-      - docker/hadolint
+      - docker/hadolint:
+          ignore-rules: 'DL3007, DL3018'
       - build-and-push
