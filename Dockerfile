@@ -25,6 +25,7 @@ RUN apk --no-cache add --virtual riscv-build-dependencies \
 WORKDIR /
 
 # RUN git clone --depth 1 --shallow-submodules --recursive https://github.com/riscv/riscv-gnu-toolchain
+# See https://github.com/riscv-collab/riscv-gnu-toolchain/issues/652#issuecomment-748411101 for why we are doing this to reduce size.
 RUN git clone https://github.com/riscv/riscv-gnu-toolchain.git && \
     cd riscv-gnu-toolchain && \
     git submodule update --init qemu && \
