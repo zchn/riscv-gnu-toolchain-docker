@@ -38,6 +38,7 @@ RUN git submodule update --init qemu && \
 
 # RUN cd /riscv-gnu-toolchain/riscv-glibc/sunrpc/rpc/ && patch < type.h.patch
 
+WORKDIR /opt/riscv
 WORKDIR /riscv-gnu-toolchain
 
 RUN ./configure --prefix=/opt/riscv && make
