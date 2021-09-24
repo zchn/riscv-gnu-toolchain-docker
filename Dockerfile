@@ -22,6 +22,8 @@ RUN apk --no-cache add --virtual riscv-build-dependencies \
     expat-dev \
     gettext-dev
 
+WORKDIR /
+
 RUN git clone --depth 1 --shallow-submodules --recursive https://github.com/riscv/riscv-gnu-toolchain
 
 # ADD https://sourceware.org/bugzilla/attachment.cgi?id=10151&action=diff&collapsed=&headers=1&format=raw /riscv-gnu-toolchain/riscv-glibc/sunrpc/rpc/type.h.patch
