@@ -1,0 +1,24 @@
+
+version: 2.1
+orbs:
+  docker: circleci/docker@1.7.0
+jobs:
+  build-and-push:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: zchn/riscv-gnu-toolchain
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: zchn/riscv-gnu-toolchain
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
+workflows:
+  commit:
+    jobs:
+      - docker/hadolint
+      - build-and-push
