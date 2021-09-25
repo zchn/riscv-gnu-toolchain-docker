@@ -1,4 +1,4 @@
-FROM alpine:latest as builder
+FROM alpine:3.13 as builder
 
 RUN apk --no-cache add --virtual riscv-build-dependencies \
     build-base \
@@ -43,7 +43,7 @@ WORKDIR /riscv-gnu-toolchain
 
 RUN ./configure --prefix=/opt/riscv && make
 
-FROM alpine:latest
+FROM alpine:3.13
 
 COPY --from=builder /opt/riscv/ /opt/riscv/
 
