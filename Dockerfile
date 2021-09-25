@@ -1,9 +1,9 @@
 FROM ubuntu:bionic as builder
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
+    DEBIAN_FRONTEND="noninteractive" apt-get install --yes --no-install-recommends \
             autoconf automake \
-            autotools-dev curl python3 \
+            autotools-dev curl git python3 \
             libmpc-dev libmpfr-dev \
             libgmp-dev gawk \
             build-essential bison flex \
