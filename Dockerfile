@@ -1,26 +1,16 @@
-FROM alpine:3.13 as builder
+FROM ubuntu:bionic as builder
 
-RUN apk --no-cache add --virtual riscv-build-dependencies \
-    build-base \
-    gawk \
-    texinfo \
-    bison \
-    git \
-    autoconf \
-    automake \
-    curl \
-    python3 \
-    mpc1-dev \
-    mpfr-dev \
-    gmp-dev \
-    flex \
-    gperf \
-    libtool \
-    patchutils \
-    bc \
-    zlib-dev \
-    expat-dev \
-    gettext-dev
+RUN apt-get update && \
+    DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
+            autoconf automake \
+            autotools-dev curl python3 \
+            libmpc-dev libmpfr-dev \
+            libgmp-dev gawk \
+            build-essential bison flex \
+            texinfo gperf libtool \
+            patchutils bc zlib1g-dev \
+            libexpat-dev && \
+     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
 
@@ -38,20 +28,13 @@ RUN git submodule update --init qemu && \
 
 # RUN cd /riscv-gnu-toolchain/riscv-glibc/sunrpc/rpc/ && patch < type.h.patch
 
-WORKDIR /opt/riscv
 WORKDIR /riscv-gnu-toolchain
 
 RUN ./configure --prefix=/opt/riscv && make
 
-FROM alpine:3.13
+FROM ubuntu:bionic
 
 COPY --from=builder /opt/riscv/ /opt/riscv/
-
-RUN apk add --no-cache --virtual riscv-runtime-dependencies \
-    libintl \
-    mpc1 \
-    gmp \
-    mpfr4
 
 ENV PATH=$PATH:/opt/riscv/bin/ \
     C_INCLUDE_PATH=/opt/riscv/riscv64-unknown-elf/include/ \
