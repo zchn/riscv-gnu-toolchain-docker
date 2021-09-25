@@ -1,7 +1,7 @@
 FROM ubuntu:bionic as builder
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --yes --no-install-recommends \
+    DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
             autoconf automake \
             autotools-dev curl git python3 \
             libmpc-dev libmpfr-dev \
