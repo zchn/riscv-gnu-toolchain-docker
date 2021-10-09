@@ -20,8 +20,8 @@ RUN git clone https://github.com/riscv/riscv-gnu-toolchain.git
 
 WORKDIR /riscv-gnu-toolchain
 
-RUN flock $(git rev-parse --git-dir)/config git submodule init /riscv-gnu-toolchain/riscv-gcc/ && \
-    flock $(git rev-parse --git-dir)/config git submodule update --progress /riscv-gnu-toolchain/riscv-gcc/
+RUN flock $(git rev-parse --git-dir)/config git submodule init '/riscv-gnu-toolchain/riscv-gcc/' && \
+    flock $(git rev-parse --git-dir)/config git submodule update --progress '/riscv-gnu-toolchain/riscv-gcc/'
 
 # RUN git submodule update --init qemu && \
 #     git submodule update --depth=1 --init
