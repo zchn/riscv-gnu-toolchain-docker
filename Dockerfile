@@ -33,7 +33,7 @@ RUN flock $(git rev-parse --git-dir)/config git submodule init /riscv-gnu-toolch
 
 # WORKDIR /riscv-gnu-toolchain
 
-RUN ./configure --prefix=/opt/riscv && make
+RUN ./configure --prefix=/opt/riscv --enable-multilib && make newlib linux
 
 FROM ubuntu:bionic
 
