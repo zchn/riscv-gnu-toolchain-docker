@@ -39,9 +39,5 @@ FROM ubuntu:20.04
 
 COPY --from=builder /opt/riscv/ /opt/riscv/
 
-ENV PATH=$PATH:/opt/riscv/bin/ \
-    C_INCLUDE_PATH=/opt/riscv/riscv64-unknown-elf/include/ \
-    LD_LIBRARY_PATH=/opt/riscv/riscv64-unknown-elf/lib/ \
-    CC=/opt/riscv/bin/riscv64-unknown-elf-gcc \
-    CXX=/opt/riscv/bin/riscv64-unknown-elf-g++ \
+ENV PATH=$PATH:/opt/riscv/bin/
 
