@@ -1,4 +1,4 @@
-FROM ubuntu:bionic as builder
+FROM ubuntu:20.04 as builder
 
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
@@ -35,7 +35,7 @@ RUN flock $(git rev-parse --git-dir)/config git submodule init '/riscv-gnu-toolc
 
 RUN ./configure --prefix=/opt/riscv --enable-multilib && make newlib linux
 
-FROM ubuntu:bionic
+FROM ubuntu:20.04
 
 COPY --from=builder /opt/riscv/ /opt/riscv/
 
