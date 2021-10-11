@@ -40,5 +40,7 @@ FROM ubuntu:20.04
 
 COPY --from=builder /opt/riscv/ /opt/riscv/
 
+RUN find /opt/riscv
+
 ENV PATH=$PATH:/opt/riscv/bin/
 
