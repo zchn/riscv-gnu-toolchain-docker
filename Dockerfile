@@ -42,5 +42,5 @@ COPY --from=builder /opt/riscv/ /opt/riscv/
 
 RUN find /opt/riscv
 
-ENV PATH=$PATH:/opt/riscv/bin/
+ENV PATH /opt/riscv/bin/:$PATH
 
