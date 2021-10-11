@@ -14,13 +14,23 @@ jobs:
       - docker/push:
           digest-path: /tmp/digest.txt
           image: zchn/riscv-gnu-toolchain
-          tag: '$CIRCLE_SHA1,latest'
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
 workflows:
+  version: 2
   commit:
     jobs:
       - docker/hadolint:
           ignore-rules: 'DL3008,DL3015,DL3018'
+      - build-and-push
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
       - build-and-push
