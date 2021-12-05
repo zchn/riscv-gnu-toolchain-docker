@@ -24,13 +24,3 @@ workflows:
       - docker/hadolint:
           ignore-rules: 'DL3008,DL3015,DL3018'
       - build-and-push
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 18 * * *"
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - build-and-push
