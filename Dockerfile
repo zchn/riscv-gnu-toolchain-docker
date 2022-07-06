@@ -34,7 +34,8 @@ RUN flock $(git rev-parse --git-dir)/config git submodule init '/riscv-gnu-toolc
 
 # WORKDIR /riscv-gnu-toolchain
 
-RUN ./configure --prefix=/opt/riscv --enable-multilib && make newlib linux
+RUN ./configure --prefix=/opt/riscv --enable-multilib && make linux 
+# newlib linux
 
 FROM ubuntu:18.04
 
